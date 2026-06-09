@@ -22,7 +22,6 @@ jobs:
     outputs:
       image: ${{ steps.image.outputs.image }}
       digest: ${{ steps.build.outputs.digest }}
-      registry-username: ${{ steps.ecr-auth.outputs.registry-username }}
       registry-password: ${{ steps.ecr-auth.outputs.registry-password }}
 
     steps:
@@ -39,7 +38,6 @@ jobs:
         id: ecr-auth
         run: |
           PASSWORD=$(aws ecr get-login-password --region ${{ env.AWS_REGION }})
-          echo "registry-username=AWS" >> "$GITHUB_OUTPUT"
           echo "registry-password=$PASSWORD" >> "$GITHUB_OUTPUT"
 
       - name: Log in to Amazon ECR
@@ -71,6 +69,6 @@ jobs:
     with:
       image: ${{ needs.build.outputs.image }}
       digest: ${{ needs.build.outputs.digest }}
-      registry-username: ${{ needs.build.outputs.registry-username }}
     secrets:
+      registry-username: AWS
       registry-password: ${{ needs.build.outputs.registry-password }}
