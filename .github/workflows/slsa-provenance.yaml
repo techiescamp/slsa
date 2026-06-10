@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
 
 env:
-  AWS_ROLE: arn:aws:iam::637423664276:role/github-connect
-  AWS_REGION: us-west-2
-  AWS_ACCOUNT_ID: 637423664276
-  ECR_REGISTRY: 637423664276.dkr.ecr.us-west-2.amazonaws.com
+  AWS_ROLE: <role arn of github oidc connect>
+  AWS_REGION: <REGION>
+  AWS_ACCOUNT_ID: <ACCOUNT-ID>
+  ECR_REGISTRY: <ACCOUNT-ID>.dkr.ecr.<REGION>.amazonaws.com
   IMAGE_NAME: web-app
 
 jobs:
